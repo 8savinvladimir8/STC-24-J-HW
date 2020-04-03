@@ -1,8 +1,15 @@
 package ru.savin.homework06;
 
-public class Animal {
+public abstract class Animal {
     private String name;
     private String color;
+
+    public  Animal() {}
+
+    public Animal(String name, String color) {
+        this.name = name;
+        this.color = color;
+    }
 
     public String getName() {
         return name;
@@ -20,7 +27,5 @@ public class Animal {
         this.color = color;
     }
 
-    public void voice () {
-        System.out.println("Голос какого-то животного...");
-    }
+    public abstract void voice ();
 }

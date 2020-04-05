@@ -10,8 +10,8 @@ public class DocumentConverter {
     public static void main(String[] args) {
         DocumentConverter.convertContract();
         System.out.println("Акт №" + Act.getContractNumber() + " от \'" + Act.getContractDate() + "\' содержит товары:");
-        for (int i = 1; i <= Act.getProducts().length - 1; i++) {
-            System.out.println(i + ". " + Act.getProducts()[i]);
+        for (int i = 0; i < Act.getProducts().length; i++) {
+            System.out.println(i + 1 + ". " + Act.getProducts()[i]);
         }
     }
 }

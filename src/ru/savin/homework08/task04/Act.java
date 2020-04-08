@@ -1,31 +1,39 @@
 package ru.savin.homework08.task04;
 
+import java.util.Arrays;
+
 public class Act {
-    private static int contractNumber;
-    private static String contractDate;
-    private static String[] products;
+    private int contractNumber;
+    private String contractDate;
+    private String[] products;
+    private String employer;
+    private static int actNumber;
 
-    public static int getContractNumber() {
-        return contractNumber;
+    public Act() {
+        actNumber++;
     }
 
-    public static void setContractNumber(int contractNumber) {
-        Act.contractNumber = contractNumber;
+    public void setContractNumber(int contractNumber) {
+        this.contractNumber = contractNumber;
     }
 
-    public static String getContractDate() {
-        return contractDate;
+    public void setContractDate(String contractDate) {
+        this.contractDate = contractDate;
     }
 
-    public static void setContractDate(String contractDate) {
-        Act.contractDate = contractDate;
+    public void setProducts(String[] products) {
+        this.products = products;
     }
 
-    public static String[] getProducts() {
-        return products;
+    public void setEmployer(String employer) {
+        this.employer = employer;
     }
 
-    public static void setProducts(String[] products) {
-        Act.products = products;
+    public String toString() {
+        return "Акт №" + actNumber +
+                " по договору №" + contractNumber +
+                " от '" + contractDate + '\'' +
+                ", включает товары:" + Arrays.toString(products) +
+                ", создан:'" + employer + '\'';
     }
 }

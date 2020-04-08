@@ -3,6 +3,10 @@ package ru.savin.homework09.task01;
 import ru.savin.homework09.task02.Flyable;
 import ru.savin.homework09.task02.Runable;
 import ru.savin.homework09.task02.Swimable;
+import ru.savin.homework09.task03.Human;
+import ru.savin.homework09.task03.Pentathlete;
+import ru.savin.homework09.task03.RunnerAthlete;
+import ru.savin.homework09.task03.SwimmerAthlete;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,5 +43,15 @@ public class Main {
             if (i < swim.length - 1) swimmers += ", ";
         }
         System.out.println(swimmers);
+        System.out.println();
+
+        // task03
+        Human[] athlete = {new RunnerAthlete("Бегун"),
+                new SwimmerAthlete("Пловец"),
+                new Pentathlete("Пятиборец")
+        };
+        for (int i = 0; i < athlete.length; i++) {
+            System.out.println(athlete[i].getName() + " " + athlete[i].run() + ", " + athlete[i].swim());
+        }
     }
 }

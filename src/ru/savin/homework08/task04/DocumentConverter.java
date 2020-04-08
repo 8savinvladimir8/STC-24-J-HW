@@ -1,17 +1,23 @@
 package ru.savin.homework08.task04;
 
 public class DocumentConverter {
-    public static void convertContract() {
-        Act.setContractNumber(Contract.getContractNumber());
-        Act.setContractDate(Contract.getContractDate());
-        Act.setProducts(Contract.getProducts());
+    public static Act convertContract(Contract contract, String employer) {
+        Act act = new Act();
+        act.setContractNumber(contract.getContractNumber());
+        act.setContractDate(contract.getContractDate());
+        act.setProducts(contract.getProducts());
+        act.setEmployer(employer);
+        return act;
     }
 
     public static void main(String[] args) {
-        DocumentConverter.convertContract();
-        System.out.println("Акт №" + Act.getContractNumber() + " от \'" + Act.getContractDate() + "\' содержит товары:");
-        for (int i = 0; i < Act.getProducts().length; i++) {
-            System.out.println(i + 1 + ". " + Act.getProducts()[i]);
-        }
+        String[] products = {"Чай","Газеты","Соль","Гвозди","Спички","Гречка"};
+        Contract contract = new Contract(123,"01.01.2020",products);
+        Act act1 = convertContract(contract,"Иванов");
+        System.out.println(act1.toString());
+        products = new String[]{"Часы", "Смартфоны", "Ноутбки", "Планшеты"};
+        contract = new Contract(321,"02.02.2020",products);
+        Act act2 = convertContract(contract,"Петров");
+        System.out.println(act2.toString());
     }
 }

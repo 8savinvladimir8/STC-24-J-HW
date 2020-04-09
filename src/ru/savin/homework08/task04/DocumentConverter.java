@@ -1,5 +1,8 @@
 package ru.savin.homework08.task04;
 
+/**
+ * Класс конвертирует договор в акт
+ */
 public class DocumentConverter {
     public static Act convertContract(Contract contract, String employer) {
         Act act = new Act();

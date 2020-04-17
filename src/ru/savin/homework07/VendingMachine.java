@@ -12,7 +12,7 @@ public class VendingMachine {
 
     public void showContent() {
         for (int i = 0; i < drinks.length; i++) {
-            System.out.println("Товар № " + i + " - " + drinks[i].toString());
+            DrinkBox.log.info("Товар № " + i + " - " + drinks[i].toString());
         }
     }
 
@@ -35,7 +35,7 @@ public class VendingMachine {
 
     public boolean checkIfMoneyEnoughToBuyProduct(int productIndex) {
         if (money < Drinks.getDrinkPrice(drinks[productIndex])) {
-            System.out.println("Внесено недостаточно денег: " + money + " руб.");
+            DrinkBox.log.error("Внесено недостаточно денег: " + money + " руб.");
             return false;
         } else {
             return true;
@@ -44,7 +44,7 @@ public class VendingMachine {
 
     public void getProduct(int productIndex) {
         money -= Drinks.getDrinkPrice(drinks[productIndex]);
-        System.out.println("Куплен товар № " + productIndex + " - " + drinks[productIndex].toString());
+        DrinkBox.log.info("Куплен товар № " + productIndex + " - " + drinks[productIndex].toString());
         drinks[productIndex] = EMPTY;
     }
 }

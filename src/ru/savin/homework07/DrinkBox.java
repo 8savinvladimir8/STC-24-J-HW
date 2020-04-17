@@ -1,15 +1,20 @@
 package ru.savin.homework07;
 
 import java.io.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Класс имитирует автомат по продаже напитков
  */
 public class DrinkBox {
+    static final Logger log = LogManager.getLogger(DrinkBox.class.getName());
+
     public static void main(String[] args) throws IOException {
         VendingMachine vm = new VendingMachine();
+        log.info("--------------------------------------------------");
         vm.showContent();
-        System.out.println();
+        log.info("");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         boolean isNotBought = true; // Признак - пока товар не куплен
@@ -20,28 +25,28 @@ public class DrinkBox {
 
         while (isNotBought) {
             if (isNeedToAddMoney) {
-                System.out.println("Добавьте деньги для покупки:");
+                log.info("Добавьте деньги для покупки:");
                 cash = Double.parseDouble(reader.readLine());
                 vm.addMoney(cash);
                 if (vm.getCountOfMoney() > 0) {
-                    System.out.println("В автомате: " + vm.getCountOfMoney() + " руб.");
+                    log.info("В автомате: " + vm.getCountOfMoney() + " руб.");
                     isNeedToAddMoney = false;
                     isCanToChooseDrink = true;
                 } else {
-                    System.out.println("Денег в автомате недостаточно: " + vm.getCountOfMoney() + " руб.");
+                    log.error("Денег в автомате недостаточно: " + vm.getCountOfMoney() + " руб.");
                     isNeedToAddMoney = true;
                     isCanToChooseDrink = false;
                 }
             }
 
             if (isCanToChooseDrink) {
-                System.out.println("Выберите номер напитка для покупки:");
+                log.info("Выберите номер напитка для покупки:");
                 productIndex = Integer.parseInt(reader.readLine());
                 if (vm.checkIfCorrectProductIndex(productIndex)) {
                     if (vm.checkIfMoneyEnoughToBuyProduct(productIndex)) {
                         vm.getProduct(productIndex);
                         if (vm.getCountOfMoney() > 0) {
-                            System.out.println("Ваша сдача: " + vm.getCountOfMoney() + " руб.");
+                            log.info("Ваша сдача: " + vm.getCountOfMoney() + " руб.");
                         }
                         isNotBought = false;
                     } else {
@@ -49,14 +54,12 @@ public class DrinkBox {
                         isCanToChooseDrink = false;
                     }
                 } else {
-                    System.out.println("Введён некорректный номер напитка!");
-                    System.out.println();
+                    log.error("Введён некорректный номер напитка!");
+                    log.error("");
                     vm.showContent();
-                    isNeedToAddMoney = false;
-                    isCanToChooseDrink = true;
                 }
             }
         }
-        System.out.println("Спасибо, что воспользовались автоматом!");
+        log.info("Спасибо, что воспользовались автоматом!");
     }
 }

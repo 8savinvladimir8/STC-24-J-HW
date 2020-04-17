@@ -15,7 +15,7 @@ public class Mother {
         for (Food f : food) {
             try {
                 child.tasteDish(f);
-            } catch(ChildDissatisfiedException e) {
+            } catch (ChildDissatisfiedException e) {
                 System.out.println(e.getMessage());
             }
         }

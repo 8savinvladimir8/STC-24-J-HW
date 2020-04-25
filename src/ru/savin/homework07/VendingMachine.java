@@ -1,10 +1,14 @@
 package ru.savin.homework07;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import static ru.savin.homework07.Drinks.*;
 
 public class VendingMachine {
+    static final Logger log = LogManager.getLogger(VendingMachine.class.getName());
     private double money = 0;
-    private Drinks[] drinks;
+    private final Drinks[] drinks;
 
     public VendingMachine() {
         drinks = new Drinks[] {WATER, JUICE, TEA, COFFEE, WATER};
@@ -12,7 +16,7 @@ public class VendingMachine {
 
     public void showContent() {
         for (int i = 0; i < drinks.length; i++) {
-            DrinkBox.log.info("Товар № " + i + " - " + drinks[i].toString());
+            log.info("Товар № {} - {}",i,drinks[i]);
         }
     }
 
@@ -35,7 +39,7 @@ public class VendingMachine {
 
     public boolean checkIfMoneyEnoughToBuyProduct(int productIndex) {
         if (money < Drinks.getDrinkPrice(drinks[productIndex])) {
-            DrinkBox.log.error("Внесено недостаточно денег: " + money + " руб.");
+            log.error("Внесено недостаточно денег: {} руб.",money);
             return false;
         } else {
             return true;
@@ -44,7 +48,7 @@ public class VendingMachine {
 
     public void getProduct(int productIndex) {
         money -= Drinks.getDrinkPrice(drinks[productIndex]);
-        DrinkBox.log.info("Куплен товар № " + productIndex + " - " + drinks[productIndex].toString());
+        log.info("Куплен товар № {} - {}",productIndex,drinks[productIndex]);
         drinks[productIndex] = EMPTY;
     }
 }

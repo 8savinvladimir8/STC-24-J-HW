@@ -4,8 +4,8 @@
 		<Console name="STDOUT" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss} - %m%n" charset="utf-8"/>
 		</Console>
-		<RollingFile name="FILE" fileName="logs/DrinkBox.log" 
-		    filePattern="logs/$${date:yyyy-MM}/DrinkBox-%d{yyyyMMdd}.log.gz"
+		<RollingFile name="FILE" fileName="logs/STC-24-J-HW.log"
+		    filePattern="logs/$${date:yyyy-MM}/STC-24-J-HW-%d{yyyyMMdd}.log.gz"
 		    immediateFlush="false" append="true">
 			<PatternLayout pattern = "%d{yyyy.MM.dd HH:mm:ss} [%-5p] (%c{1}:%M:%L) - %m%n"/>
 			<BurstFilter level="INFO" rate="0" maxBurst="0"/>

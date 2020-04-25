@@ -29,11 +29,11 @@ public class DrinkBox {
                 cash = Double.parseDouble(reader.readLine());
                 vm.addMoney(cash);
                 if (vm.getCountOfMoney() > 0) {
-                    log.info("В автомате: " + vm.getCountOfMoney() + " руб.");
+                    log.info("В автомате: {} руб.",vm.getCountOfMoney());
                     isNeedToAddMoney = false;
                     isCanToChooseDrink = true;
                 } else {
-                    log.error("Денег в автомате недостаточно: " + vm.getCountOfMoney() + " руб.");
+                    log.error("Денег в автомате недостаточно: {} руб.",vm.getCountOfMoney());
                     isNeedToAddMoney = true;
                     isCanToChooseDrink = false;
                 }
@@ -46,7 +46,7 @@ public class DrinkBox {
                     if (vm.checkIfMoneyEnoughToBuyProduct(productIndex)) {
                         vm.getProduct(productIndex);
                         if (vm.getCountOfMoney() > 0) {
-                            log.info("Ваша сдача: " + vm.getCountOfMoney() + " руб.");
+                            log.info("Ваша сдача: {} руб.",vm.getCountOfMoney());
                         }
                         isNotBought = false;
                     } else {

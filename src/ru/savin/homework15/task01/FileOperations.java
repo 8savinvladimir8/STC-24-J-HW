@@ -60,7 +60,6 @@ public class FileOperations {
             System.out.println("Файл " + fileName1 + " не был переименован");
             return false;
         }
-
     }
 
     public boolean copyFile(String file, String path) throws IOException {

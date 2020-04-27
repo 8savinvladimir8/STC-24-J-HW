@@ -1,7 +1,9 @@
 package ru.savin.homework15.task01;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -9,99 +11,80 @@ import java.io.InputStreamReader;
  * Класс создаёт, переименовывает, копирует и удаляет файл.
  */
 public class WorkWithFiles {
+    static final Logger log = LogManager.getLogger(WorkWithFiles.class.getName());
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        boolean isWorking = true;
-        int operationFlag = 0;
-        String filePath1 = "";
-        String filePath2 = "";
-        String fileName1 = "";
-        String fileName2 = "";
-        FileOperations fo = new FileOperations();
 
-        System.out.println("Для выхода из программы можно ввести: exit");
-        while (isWorking) {
-            // Создание папки для файла
-            if (operationFlag == 0) {
-                System.out.println("Введите имя папки на диске С: в которой будет создан файл");
-                filePath1 = br.readLine();
-                if (filePath1.equals("exit")) break;
-                if (!fo.checkIfNameCorrect(filePath1)) {
-                    System.out.println("Некорректное имя папки: " + filePath1);
-                    continue;
-                } else {
-                    filePath1 = "C:" + File.separator + filePath1;
-                    if (fo.createDirectory(filePath1)) operationFlag = 1;
-                    System.out.println();
-                }
-            }
+        String fileName1;
+        String fileName2;
+        String filePath1;
+        String filePath2;
 
-            // Создание файла в папке
-            if (operationFlag == 1) {
-                System.out.println("Введите имя файла, который будет создан в папке " + filePath1);
-                fileName1 = br.readLine();
-                if (fileName1.equals("exit")) break;
-                if (!fo.checkIfNameCorrect(fileName1)) {
-                    System.out.println("Некорректное имя файла: " + fileName1);
-                    continue;
-                } else {
-                    if (fo.createFile(filePath1, fileName1)) operationFlag = 2;
-                    System.out.println();
-                }
-            }
+        while (true) {
+            log.info("");
+            log.info("Введите № операции (exit для выхода):");
+            log.info("1 - создать папку");
+            log.info("2 - создать файл");
+            log.info("3 - переименовать папку");
+            log.info("4 - переименовать файл");
+            log.info("5 - копировать файл");
+            log.info("6 - удалить папку");
+            log.info("7 - удалить файл");
 
-            // Переименование созданного файла
-            if (operationFlag == 2) {
-                System.out.println("Переименуем файл " + fileName1 + " - введите новое имя");
-                fileName2 = br.readLine();
-                if (fileName2.equals("exit")) break;
-                if (!fo.checkIfNameCorrect(fileName2)) {
-                    System.out.println("Некорректное имя файла: " + fileName2);
-                    continue;
-                } else {
-                    if (fo.renameFile(filePath1 + File.separator + fileName1, filePath1 + File.separator + fileName2)) {
-                        fileName1 = fileName2;
-                        operationFlag = 3;
-                        System.out.println();
+            String line = br.readLine();
+            if (line.equals("exit")) break;
+
+            switch (line) {
+                case "1":
+                    log.info("Введите полный путь до создаваемой папки:");
+                    line = br.readLine();
+                    FileUtility.createDirectories(line);
+                    break;
+                case "2":
+                    log.info("Введите полный путь к создаваемому файлу (с именем файла):");
+                    line = br.readLine();
+                    FileUtility.createFile(line);
+                    break;
+                case "3":
+                    log.info("Введите полный путь к папке, которую хотите переименовать:");
+                    filePath1 = br.readLine();
+                    log.info("Введите полный путь с новым именем папки:");
+                    filePath2 = br.readLine();
+                    FileUtility.renameFolder(filePath1,filePath2);
+                    break;
+                case "4":
+                    log.info("Введите полный путь к файлу (с именем файла), который хотите переименовать:");
+                    fileName1 = br.readLine();
+                    log.info("Введите полный путь к файлу (с новым именем файла):");
+                    fileName2 = br.readLine();
+                    FileUtility.renameFile(fileName1,fileName2);
+                    break;
+                case "5":
+                    log.info("Введите полный путь к файлу (с именем файла), который хотите копировать:");
+                    fileName1 = br.readLine();
+                    log.info("Введите полный путь к папке, в которую копируете файл:");
+                    filePath1 = br.readLine();
+                    try {
+                        FileUtility.copyFile(fileName1, filePath1);
+                    } catch (IOException e) {
+                        log.error("Ошибка ввода-вывода:");
+                        log.error(e.fillInStackTrace());
                     }
-                }
-            }
-
-            // Создание папки для копирования файла
-            if (operationFlag == 3) {
-                System.out.println("Введите имя папки, которая будет создана в " + filePath1);
-                filePath2 = br.readLine();
-                if (filePath2.equals("exit")) break;
-                if (!fo.checkIfNameCorrect(filePath2)) {
-                    System.out.println("Некорректное имя папки: " + filePath2);
-                    continue;
-                } else {
-                    filePath2 = filePath1 + File.separator + filePath2;
-                    if (fo.createDirectory(filePath2)) operationFlag = 4;
-                    System.out.println();
-                }
-            }
-
-            // Копирование файла
-            if (operationFlag == 4) {
-                System.out.println("Копируем файл " + filePath1 + File.separator + fileName1 + " в папку " + filePath2);
-                try {
-                    fo.copyFile(filePath1 + File.separator + fileName1, filePath2);
-                } catch (IOException e) {
-                    System.out.println("Ошибка ввода-вывода! " + e);
-                    e.printStackTrace();
-                }
-                operationFlag = 5;
-                System.out.println();
-            }
-
-            // Удаление файла
-            if (operationFlag == 5) {
-                System.out.println("Удаляем файл " + filePath1 + File.separator + fileName1);
-                if (fo.deleteFile(filePath1 + File.separator + fileName1)) {
-                    System.out.println();
-                }
-                isWorking = false;
+                    break;
+                case "6":
+                    log.info("Введите полный путь к папке, которую хотите удалить:");
+                    filePath1 = br.readLine();
+                    FileUtility.deleteFolder(filePath1);
+                    break;
+                case "7":
+                    log.info("Введите полный путь к файлу (с именем файла), который хотите удалить:");
+                    fileName1 = br.readLine();
+                    FileUtility.deleteFile(fileName1);
+                    break;
+                default:
+                    log.error("Введён некорректный номер операции");
+                    break;
             }
         }
     }

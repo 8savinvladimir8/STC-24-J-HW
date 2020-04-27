@@ -17,7 +17,7 @@ public class LibraryStorage {
             log.info("Библиотека сохранена в library.dat");
         } catch (IOException e) {
             log.error("Ошибка ввода-вывода:");
-            e.printStackTrace();
+            log.error(e.fillInStackTrace());
         }
     }
 
@@ -28,10 +28,10 @@ public class LibraryStorage {
                 return (Library) ois.readObject();
             } catch (IOException e) {
                 log.error("Ошибка ввода-вывода:");
-                e.printStackTrace();
+                log.error(e.fillInStackTrace());
             } catch (ClassNotFoundException e) {
                 log.error("Не найден считываемый класс:");
-                e.printStackTrace();
+                log.error(e.fillInStackTrace());
             }
         } else {
             log.info("Файл сохранения library.dat не найден. Восстановление невозможно");

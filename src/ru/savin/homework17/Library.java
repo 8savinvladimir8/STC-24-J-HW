@@ -21,8 +21,8 @@ public class Library implements Serializable {
             log.error("Библиотека пуста. Пожалуйста добавьте книгу или попробуйте восстановить библиотеку");
         } else {
             log.info("Список книг:");
-            for (int i = 0; i < books.length; i++) {
-                log.info(books[i]);
+            for (Book book : books) {
+                log.info(book);
             }
         }
     }

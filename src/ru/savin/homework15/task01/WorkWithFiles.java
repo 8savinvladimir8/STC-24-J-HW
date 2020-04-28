@@ -38,13 +38,13 @@ public class WorkWithFiles {
             switch (line) {
                 case "1":
                     log.info("Введите полный путь до создаваемой папки:");
-                    line = br.readLine();
-                    FileUtility.createDirectories(line);
+                    filePath1 = br.readLine();
+                    FileUtility.createDirectories(filePath1);
                     break;
                 case "2":
                     log.info("Введите полный путь к создаваемому файлу (с именем файла):");
-                    line = br.readLine();
-                    FileUtility.createFile(line);
+                    fileName1 = br.readLine();
+                    FileUtility.createFile(fileName1);
                     break;
                 case "3":
                     log.info("Введите полный путь к папке, которую хотите переименовать:");

@@ -7,9 +7,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Класс {@code IndianCityCatalog} даёт возможность получать данные о городах Индии в формате JSON
+ *
+ * @author Savin Vladimir
+ */
 public class IndianCityCatalog {
     static final Logger log = LogManager.getLogger(IndianCityCatalog.class.getName());
 
+    /**
+     * Точка входа
+     * @param args параметр содержит аргументы командной строки.
+     * @throws IOException исключение ввода-вывода, генерируемое методом.
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

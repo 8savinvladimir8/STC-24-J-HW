@@ -10,7 +10,7 @@ import java.util.Formatter;
 
 /**
  * Класс {@code IndianCityJsonManager} получает и сериализует данные о городах Индии в формате JSON,
- * используя сервис @see <a href="Indian Cities Rest API">https://indian-cities-api-nocbegfhqg.now.sh/</a>
+ * используя сервис @see <a href="https://indian-cities-api-nocbegfhqg.now.sh/">Indian Cities Rest API</a>
  *
  * @author Savin Vladimir
  */

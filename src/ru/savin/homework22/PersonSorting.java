@@ -35,9 +35,10 @@ public class PersonSorting {
                 log.info("Введите № операции (exit для выхода):");
                 log.info("1 - показать список персон");
                 log.info("2 - добавить персону в список");
-                log.info("3 - вывести список персон, отсортированный по возрасту, по имени");
-                log.info("4 - вывести список персон, отсортированный по имени, по возрасту");
-                log.info("5 - перемешать список персон");
+                log.info("3 - вывести список персон, отсортированный Суперкомпаратором по возрасту, по имени");
+                log.info("4 - вывести список персон, отсортированный по возрасту, по имени");
+                log.info("5 - вывести список персон, отсортированный по имени, по возрасту");
+                log.info("6 - перемешать список персон");
 
                 String line = br.readLine();
                 if (line.equals("exit")) return;
@@ -54,12 +55,15 @@ public class PersonSorting {
                         pr.addPerson(new Person(age, name));
                         break;
                     case "3":
-                        pr.sortPersonByAgeByName();
+                        pr.sortPersonWithSuperComparator();
                         break;
                     case "4":
-                        pr.sortPersonByNameByAge();
+                        pr.sortPersonByAgeByName();
                         break;
                     case "5":
+                        pr.sortPersonByNameByAge();
+                        break;
+                    case "6":
                         pr.shufflePersons();
                         break;
                     default:

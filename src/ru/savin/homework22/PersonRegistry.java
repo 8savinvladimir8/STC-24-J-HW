@@ -52,6 +52,21 @@ public class PersonRegistry {
     }
 
     /**
+     * Метод сортирует хранящиеся в списке персон объекты класса {@code Person} одним компаратором
+     * сначала по значениям поля "возраст", затем по значениям поля "имя"
+     * при помощи классов-компараторов {@code PersonCompareByAge} и {@code PersonCompareByName}.
+     */
+    public void sortPersonWithSuperComparator() {
+        if (persons.length == 1 && persons[0] == null) {
+            log.error(EMPTY_PERSONS);
+        } else {
+            log.info("Список персон отсортирован по возрасту, по имени.");
+            Arrays.sort(persons, new PersonSuperComparator());
+            showPersons();
+        }
+    }
+
+    /**
      * Метод сортирует хранящиеся в списке персон объекты класса {@code Person}
      * сначала по значениям поля "возраст", затем по значениям поля "имя"
      * при помощи классов-компараторов {@code PersonCompareByAge} и {@code PersonCompareByName}.

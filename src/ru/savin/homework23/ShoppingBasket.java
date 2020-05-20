@@ -16,17 +16,12 @@ import java.util.List;
 public class ShoppingBasket implements Basket {
     static final Logger log = LogManager.getLogger(ShoppingBasket.class.getName());
     private static final String EMPTY_BASKET = "Корзина пуста. Пожалуйста добавьте товары.";
-    private final ArrayList<String> productsList;
+    private final List<String> productsList;
 
     public ShoppingBasket() {
         productsList = new ArrayList<>();
     }
 
-    /**
-     * Метод добавляет указанное количество товара в корзину интернет-магазина.
-     * @param product содержит наименование нового товара, который нужно добавить в корзину.
-     * @param quantity содержит количество нового товара, который нужно добавить в корзину.
-     */
     public void addProduct(String product, int quantity) {
         if (containsIgnoreCase(productsList, product)) {
             log.error("Товар '{}' уже добавлен в корзину. Если требуется, то измените его количество.",
@@ -36,18 +31,13 @@ public class ShoppingBasket implements Basket {
             log.error("Нулевое или отрицательное количества товара недопустимо.");
 
         } else {
-            productsList.ensureCapacity(productsList.size() + quantity);
-            for (int i = 1; i <= quantity; i++) {
+            for (int i = 0; i < quantity; i++) {
                 productsList.add(product);
             }
             log.info("Добавлен товар '{}' в количестве {}", product, quantity);
         }
     }
 
-    /**
-     * Метод удаляет все единиы указанного товара из корзины.
-     * @param product содержит наименование удаляемого из корзины товара.
-     */
     public void removeProduct(String product) {
         if (productsList.isEmpty()) {
             log.error(EMPTY_BASKET);
@@ -69,13 +59,6 @@ public class ShoppingBasket implements Basket {
         }
     }
 
-    /**
-     * Метод меняет количество, содержащегося в корзине товара, на указанную величину.
-     * Т.е. содержащееся в корзине количество указанного товара изменяется на разницу
-     * между текущим количеством товара и новым указанным количеством товара.
-     * @param product содержит наименование товара, количество которого нужно изменить.
-     * @param quantity содержит новое количество указанного товара.
-     */
     public void updateProductQuantity(String product, int quantity) {
         if (productsList.isEmpty()) {
             log.error(EMPTY_BASKET);
@@ -118,9 +101,6 @@ public class ShoppingBasket implements Basket {
         }
     }
 
-    /**
-     * Метод полностью очищает корзину от хранящихся в ней товаров.
-     */
     public void clear() {
         if (productsList.isEmpty()) {
             log.error("Корзина уже пуста.");
@@ -130,19 +110,10 @@ public class ShoppingBasket implements Basket {
         }
     }
 
-    /**
-     * Метод возвращает коллекцию товаров, хранящихся в корзине.
-     * @return коллекцию товаров, хранящихся в корзине.
-     */
     public List<String> getProducts() {
         return productsList;
     }
 
-    /**
-     * Метод возвращает количество указанного товара, хранящегося в корзине.
-     * @param product наименование товара, для которого нужно вернуть его количество, хранящееся в корзине.
-     * @return количество указанного товара, хранящегося в корзине.
-     */
     public int getProductQuantity(String product) {
         if (!containsIgnoreCase(productsList, product)) {
             return 0;

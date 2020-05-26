@@ -28,7 +28,8 @@ public class UniqueMapValueChecker {
     }
 
     /**
-     * Метод выполняет метод {@code isUnique} и выводит сообщения в зависимости от возвращённого значения.
+     * Метод обрабатывает значение, которое вернул метод {@code isUnique}
+     * и выводит соответствующие сообщения.
      */
     public void checkUniqueValues() {
         if (stringMap.isEmpty()) {
@@ -48,13 +49,11 @@ public class UniqueMapValueChecker {
      * @return true - дублей нет, иначе false.
      */
     public boolean isUnique(Map<String, String> map) {
-        ArrayList<String> valuesList = new ArrayList<>();
+        Set<String> valuesSet = new HashSet<>();
 
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (valuesList.contains(entry.getValue())) {
+            if (!valuesSet.add(entry.getValue())) {
                 return false;
-            } else {
-                valuesList.add(entry.getValue());
             }
         }
 
@@ -62,7 +61,8 @@ public class UniqueMapValueChecker {
     }
 
     /**
-     * Метод выполняет метод {@code isUniqueLazy} и выводит сообщения в зависимости от возвращённого значения.
+     * Метод обрабатывает значение, которое вернул метод {@code isUniqueLazy}
+     * и выводит соответствующие сообщения.
      */
     public void checkUniqueValuesLazy() {
         if (stringMap.isEmpty()) {

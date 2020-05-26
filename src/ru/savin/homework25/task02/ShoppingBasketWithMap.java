@@ -21,23 +21,26 @@ public class ShoppingBasketWithMap implements Basket {
     }
 
     public void addProduct(String product, int quantity) {
-        if (productsMap.containsKey(product.toUpperCase())) {
-            log.error("Товар '{}' уже добавлен в корзину. Если требуется, то измените его количество.", product);
-
-        } else if (quantity <= 0) {
+        if (quantity <= 0) {
             log.error("Нулевое или отрицательное количества товара недопустимо.");
 
-        } else {
+        } else if (!productsMap.containsKey(product.toUpperCase())) {
             productsMap.put(product.toUpperCase(), quantity);
             log.info("Добавлен товар '{}' в количестве {}", product, quantity);
+
+        } else if (productsMap.containsKey(product.toUpperCase())) {
+            int productCount = getProductQuantity(product) + quantity;
+            updateProductQuantity(product, productCount);
         }
     }
 
     public void removeProduct(String product) {
         if (productsMap.isEmpty()) {
             log.error(EMPTY_BASKET);
+
         } else if (!productsMap.containsKey(product.toUpperCase())) {
             log.error("Товар '{}' не найден в корзине.", product);
+
         } else {
             productsMap.entrySet().removeIf(entries -> entries.getKey().equalsIgnoreCase(product));
             log.info("Товар '{}' удалён из корзины", product);
@@ -65,7 +68,7 @@ public class ShoppingBasketWithMap implements Basket {
                         entry.setValue(quantity);
                     }
                 }
-                log.info("Количество товара '{}' в корзине изменено на {}.", product, quantity);
+                log.info("Изменено количество товара '{}' в корзине: {}.", product, quantity);
             }
         }
     }
@@ -73,6 +76,7 @@ public class ShoppingBasketWithMap implements Basket {
     public void clear() {
         if (productsMap.isEmpty()) {
             log.error("Корзина уже пуста.");
+
         } else {
             productsMap.clear();
             log.info("Корзина очищена от товаров.");

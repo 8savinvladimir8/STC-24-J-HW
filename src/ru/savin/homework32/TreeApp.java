@@ -6,9 +6,17 @@ import org.apache.logging.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * Класс {@code TreeApp} позволяет создать бинарное дерево и поработать с его узлами.
+ * @author Savin Vladimir
+ */
 public class TreeApp {
     static final Logger log = LogManager.getLogger(TreeApp.class.getName());
 
+    /**
+     * Точка входа.
+     * @param args содержит аргументы командной строки.
+     */
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 

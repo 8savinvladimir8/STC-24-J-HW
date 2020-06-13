@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 /**
  * Класс {@code MyShiftedArray} реализует следующую задачу:
+ * Суть задачи:
  * Дан двумерный массив типа:
  *      [[1, 2, 3, 4, 5]
  *       [6, 7, 8, 9]
@@ -21,7 +22,6 @@ import java.io.InputStreamReader;
  *      [[2, 3, 4, 5, 0]
  *       [7, 8, 9, 0]
  *       [11, 12, 0]]
- *
  * @author Savin Vladimir
  */
 public class MyShiftedArray {

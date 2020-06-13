@@ -1,5 +1,10 @@
 package ru.savin.homework08.task01;
 
+/**
+ * Суть задачи:
+ * 1. Поэксперементировать с ключевым словом final
+ * @author Savin Vladimir
+ */
 public final class FinalExperiment {
     final static double PI = 3.14;
 

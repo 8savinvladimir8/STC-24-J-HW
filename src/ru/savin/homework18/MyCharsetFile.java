@@ -10,6 +10,9 @@ import java.nio.charset.Charset;
 
 /**
  * Используя данный класс, можно скопировать файл в одной кодировке в файл с другой кодировкой
+ * Суть задачи:
+ * Написать программу, которая копирует файл с одной кодировкой в файл с другой.
+ * @author Savin Vladimir
  */
 public class MyCharsetFile {
     static final Logger log = LogManager.getLogger(MyCharsetFile.class.getName());

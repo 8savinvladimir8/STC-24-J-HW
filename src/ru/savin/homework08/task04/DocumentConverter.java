@@ -2,6 +2,11 @@ package ru.savin.homework08.task04;
 
 /**
  * Класс конвертирует договор в акт
+ * Суть задачи:
+ * 4. Реализовать два класса: договор и акт. В каждом сделать поля: номер, дата, список товаров (массив строк).
+ * Написать класс со статическим методом конвертации договора в акт (на вход передавать договор,
+ * на выходе получаем акт).
+ * @author Savin Vladimir
  */
 public class DocumentConverter {
     public static Act convertContract(Contract contract, String employer) {

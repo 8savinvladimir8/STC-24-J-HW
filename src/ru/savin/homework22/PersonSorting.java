@@ -15,6 +15,10 @@ import java.security.NoSuchAlgorithmException;
  * - сортировать список сначала по возрасту, затем по имени;
  * - сортировать список сначала по имени, затем по возрасту;
  * - перемешать персоны в списке персон.
+ * Суть задачи:
+ * Написать класс PersonSuperComparator,
+ * который имплементит Comparator, но умеет сравнивать по двум параметрам , возраст и имя.
+ * Класс Person теперь содержит два поля int age и String name
  * @author Savin Vladimir
  */
 public class PersonSorting {

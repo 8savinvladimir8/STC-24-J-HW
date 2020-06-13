@@ -1,5 +1,11 @@
 package ru.savin.homework08.task02;
 
+/**
+ * Суть задачи:
+ * 2. Реализовать класс Calculator, который будет содержать статические методы для операций вычитания, сложения,
+ * умножения, деления и взятия процента от числа. Класс должен работать как с целыми числами, так и с дробями.
+ * @author Savin Vladimir
+ */
 public class Main {
     public static void main(String[] args) {
         System.out.println("Суммирование 1 + 2 = " + Calculator.summation(1,2));

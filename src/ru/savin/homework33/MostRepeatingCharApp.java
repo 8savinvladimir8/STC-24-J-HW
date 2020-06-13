@@ -10,6 +10,11 @@ import java.util.Map;
 
 /**
  * Класс {@code MostRepeatingCharApp} позволяет найти в строке самый часто встречающийся символ.
+ * Суть задачи:
+ * Вывести максимально встречающийся символ в строке.
+ * Пример:
+ * This is test message
+ * Character: s has occurred maximum times in String: 5
  * @author Savin Vladimir
  */
 public class MostRepeatingCharApp {
@@ -60,10 +65,8 @@ public class MostRepeatingCharApp {
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
             if (entry.getValue().equals(max)) {
                 symbol = entry.getKey();
-                break;
+                log.info("Символ '{}' встречается в строке наибольшее количество раз: {}", symbol, max);
             }
         }
-
-        log.info("Символ '{}' встречается в строке наибольшее количество раз: {}", symbol, max);
     }
 }

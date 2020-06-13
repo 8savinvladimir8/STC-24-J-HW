@@ -8,6 +8,11 @@ import java.io.InputStreamReader;
 
 /**
  * Класс {@code FilteredEvenSet} демонстрирует работу с классом {@code FilteredSet}.
+ * Суть задачи:
+ * Написать метод, который возвращает множество, в котором удалены все элементы четной длины из исходного множества.
+ * public Set<String> removeEvenLength(Set<String> set);
+ * Например, для множества ["foo", "buzz", "bar", "fork", "bort", "spoon", "!", "dude"]
+ * метод вернет ["foo", "bar", "spoon", "!"]
  * @author Savin Vladimir
  */
 public class FilteredEvenSet {

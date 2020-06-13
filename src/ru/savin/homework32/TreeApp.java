@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 
 /**
  * Класс {@code TreeApp} позволяет создать бинарное дерево и поработать с его узлами.
+ * Суть задачи:
+ * Программа для подсчета листовых узлов в двоичном дереве в Java.
  * @author Savin Vladimir
  */
 public class TreeApp {
